@@ -106,13 +106,11 @@ plt.show()
 # Vis hvordan du kan bruke den grafiske framstillingen til å komme fram til svaret du fikk i oppgave d).
 # Vi må finne ut når grafen vår krysser sluttbeløp for tilbud 2.
 konstant = [sluttbeløp2]*int((slutt-start)*1000)
-
 fig = plt.figure()
 ax = plt.axes()
 tidspunkt= np.linspace(start,slutt,(slutt-start)*1000)
 plt.plot(tidspunkt,f(tidspunkt))
 plt.plot(tidspunkt,konstant,color="red")
-
 plt.show()
 
 # Vi ser at grafene krysser litt over 1.02. Dette stemmer med svaret fra d.
