@@ -45,7 +45,7 @@ sentrumsavstand = alpha.distance(sentrum)
 
 overflateavstand = sentrumsavstand - radius 
 
-print(overflateavstand)
+print("Svar:",overflateavstand)
 
 print("""Et plan \beta er gitt ved ligningen
 
@@ -62,8 +62,24 @@ exp = 2*x+y+t*(z-3)+1
 
 
 ex = t
-beta = Plane(Point3D( 0 , 0 ,3-1/t), normal_vector=(2,1,t))
+beta = Plane(Point3D( 0 , -1 ,3), Point3D(-0.5,0,3),Point3D(0,0,3-t**-1))
 
-betaavstand = beta.distance(sentrum)
+# Den innebygde avstandfunksjonen takler ikke symbolske koeffisienter.
 
-print(betaavstand)
+k = beta.equation(x,y,z).expand()
+a, b, c = [k.coeff(i) for i in (x, y, z)]
+d = k.xreplace({x: sentrum.x, y: sentrum.y, z: sentrum.z})
+avstand = sqrt(d**2/(a**2 + b**2 + c**2))
+
+print("Svar:",avstand)
+
+vis = Abs(5-4*t)/sqrt(5+t**2)
+
+plot(vis,avstand)
+
+print(""")
+d) Bestem eksakte verdier for t slik at planet  tangerer kuleflaten K . """)
+
+løsninger = solveset(Eq(avstand,radius),t)
+
+print("Svar:",løsninger)
